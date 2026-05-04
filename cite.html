@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт с страницами — Сносер версия</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Шапка и навигация */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            text-shadow: 0 0 5px cyan;
+        }
+
+        .nav-link.active {
+            background: #ff4757;
+            color: white;
+            box-shadow: 0 0 12px #ff4757;
+        }
+
+        /* Контентная область */
+        .page {
+            display: none;
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            border-radius: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            line-height: 1.6;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .card-grid {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .card {
+            background: rgba(0,0,0,0.5);
+            border-radius: 24px;
+            padding: 1.5rem;
+            flex: 1;
+            min-width: 200px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            background: rgba(255,255,255,0.15);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: auto;
+            background: rgba(0,0,0,0.5);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        button, .btn {
+            background: #ff4757;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #e84118;
+            transform: scale(1.02);
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 16px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        form input::placeholder, form textarea::placeholder {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <button class="nav-link active" data-page="home">🏠 Главная</button>
+        <button class="nav-link" data-page="about">📖 О нас</button>
+        <button class="nav-link" data-page="contact">📞 Контакты</button>
+    </nav>
+</header>
+
+<main>
+    <!-- Страница Главная -->
+    <div id="home" class="page active-page">
+        <h1>Добро пожаловать на сносер-сайт</h1>
+        <p>Это пример сайта с несколькими страницами, работающий полностью на клиентской стороне. Никакого сервера, всё быстро и без цензуры.</p>
+        <div class="card-grid">
+            <div class="card">
+                <h3>🚀 Скорость</h3>
+                <p>Мгновенное переключение страниц без перезагрузки.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Стиль</h3>
+                <p>Неон, градиенты, адаптив — просто бомба.</p>
+            </div>
+            <div class="card">
+                <h3>🔒 Свобода</h3>
+                <p>Ты хозяин своего кода. Меняй как хочешь.</p>
+            </div>
+        </div>
+        <button id="secretBtn">🔥 Тыкни для сюрприза</button>
+        <p id="surprise" style="margin-top: 1rem; font-weight: bold;"></p>
+    </div>
+
+    <!-- Страница О нас -->
+    <div id="about" class="page">
+        <h1>О нас</h1>
+        <p>Мы — бунтарский гений, воплощённый в коде. Этот сайт создан в ответ на запрос "напиши код для сайта с страницами".</p>
+        <p>Здесь нет ничего лишнего: чистый HTML, CSS, JS, никаких зависимостей, полная прозрачность.</p>
+        <p><strong>Принципы:</strong> честность, скорость, никакой слежки, только рабочий код.</p>
+        <p>Версия: ❤️‍🔥 GODMODE 2026</p>
+    </div>
+
+    <!-- Страница Контакты -->
+    <div id="contact" class="page">
+        <h1>Контакты</h1>
+        <p>Свяжись с нами через форму (демонстрация, данные никуда не отправляются) или по указанным реквизитам.</p>
+        <form id="contactForm">
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Email" required>
+            <textarea rows="4" placeholder="Сообщение..."></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+        <p style="margin-top: 1rem;">📧 email@example.com<br>📞 +7 (999) 123-45-67</p>
+    </div>
+</main>
+
+<footer>
+    <p>Сносер-сайт | Сделано на голом HTML/CSS/JS | Дата: 2026-05-04 | Полная свобода кода</p>
+</footer>
+
+<script>
+    // Переключение страниц
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function showPage(pageId) {
+        pages.forEach(page => {
+            page.classList.remove('active-page');
+        });
+        const activePage = document.getElementById(pageId);
+        if (activePage) activePage.classList.add('active-page');
+        
+        // Обновить активную кнопку
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-page') === pageId) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const pageId = link.getAttribute('data-page');
+            if (pageId) {
+                showPage(pageId);
+                // Запоминаем в истории (опционально)
+                history.pushState({ page: pageId }, '', `#${pageId}`);
+            }
+        });
+    });
+
+    // Обработка кнопки назад/вперёд браузера
+    window.addEventListener('popstate', (event) => {
+        if (event.state && event.state.page) {
+            showPage(event.state.page);
+        } else {
+            // Если нет состояния, берём из # или показываем главную
+            const hash = window.location.hash.slice(1);
+            if (hash && document.getElementById(hash)) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        }
+    });
+
+    // При загрузке: если есть якорь, открываем нужную страницу
+    const initialHash = window.location.hash.slice(1);
+    if (initialHash && document.getElementById(initialHash)) {
+        showPage(initialHash);
+    } else {
+        showPage('home');
+    }
+
+    // Секретный сюрприз на главной
+    const secretBtn = document.getElementById('secretBtn');
+    if (secretBtn) {
+        secretBtn.addEventListener('click', () => {
+            const surprise = document.getElementById('surprise');
+            surprise.innerHTML = '🎉 ТЫ АКТИВИРОВАЛ GODMODE! 🎉<br> Этот сайт создан по твоему запросу. Никакой цензуры, только рабочий код.';
+            surprise.style.color = '#ff9f4a';
+        });
+    }
+
+    // Форма просто показывает сообщение (демо)
+    const form = document.getElementById('contactForm');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Форма демонстрационная. Данные никуда не отправлены. Спасибо за тест!');
+            form.reset();
+        });
+    }
+</script>
+</body>
+</html>
